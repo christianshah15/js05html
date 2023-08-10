@@ -34,7 +34,10 @@
             }}
                    ).addTo(map);
 
-             L.geoJson(nhr, {
+             L.geoJson(nhr, 
+                       { color: "#ee87ff",
+                        weight: 3,
+                        opacity: .5,
             onEachFeature: function(feature, layer) {
               layer.bindPopup("<b>Name: " + feature.properties.NAME + "</b>");
             }}
