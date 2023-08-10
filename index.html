@@ -17,7 +17,7 @@
     <h1>Hello Campus!</h1>
     <div id="map"></div>
           <script>
-
+        var railroadsLayer;
         var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                                             { maxZoom: 19,
                                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'})
@@ -34,14 +34,17 @@
             }}
                    ).addTo(map);
 
-             L.geoJson(nhr, 
+             railroadsLayer = L.geoJson(nhr, 
                        { color: "#ee87ff",
                         weight: 3,
                         opacity: .5,
             onEachFeature: function(feature, layer) {
-              layer.bindPopup("<b>Name: " + feature.properties.NAME + "</b>");
-            }}
-                   ).addTo(map);
+              layer.bindPopup("<b>Name: " + feature.properties.NAME + "</b><br>" + "Avg. Slope: " +
+                             feature.properties.Avg_Slope + "<br>" +
+                             "Max. Slope: " +
+                             feature.properties.Max_Slope);
+            }
+                       }).addTo(map);
 
       
       </script>
