@@ -26,12 +26,12 @@
                                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'})
 
             function lineSymbology(feature) {
-              var slope = feature.properties.Max_Slope;
+              var length = feature.properties.SECT_LENGTH;
               var lineWidth = 2;
               var lineColor = "#ald76a";
 
-              if (slope > 15.0) { lineColor = "#777777"; linewidth = 4;}
-              if (slope > 30.0) { lineColor = "#e9a3c9"; linewidth = 6;}
+              if (length > 15.0) { lineColor = "#777777"; linewidth = 4;}
+              if (length > 30.0) { lineColor = "#e9a3c9"; linewidth = 6;}
 
               return {
                 color: lineColor,
@@ -54,10 +54,8 @@
              railroadsLayer = L.geoJson(nhr, 
                        { style: lineSymbology,
             onEachFeature: function(feature, layer) {
-              layer.bindPopup("<b>Name: " + feature.properties.NAME + "</b><br>" + "Avg. Slope: " +
-                             feature.properties.Avg_Slope + "<br>" +
-                             "Max. Slope: " +
-                             feature.properties.Max_Slope);
+              layer.bindPopup("<b>Name: " + feature.properties.NAME + "</b><br>" + "Avg. SECT_LENGTH: " +
+                             feature.properties.SECT_LENGTH + "<br>");
             }
                        }).addTo(map);
 
